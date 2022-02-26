@@ -16,10 +16,10 @@ class hatespeech:
     label_encoder = pickle.load(open("Hatespeech/label_encoder.pkl", "rb"))
     tokenizer = pickle.load(open("Hatespeech/tokenizer.pkl", "rb"))
 
-class imageCaption:
-    transform = pickle.load(open('Image Caption/transform.pkl','rb'))
-    model = pickle.load(open('Image Caption/model.pkl', 'rb'))
-    model.eval()
+# class imageCaption:
+#     transform = pickle.load(open('Image Caption/transform.pkl','rb'))
+#     model = pickle.load(open('Image Caption/model.pkl', 'rb'))
+#     model.eval()
 
 def test_re(s):
         regex = re.compile('[%s]' % re.escape(string.punctuation))
