@@ -8,7 +8,7 @@ from keras.models import load_model
 import cv2
 from Hadees.utils import *
 from google.cloud import vision
-import torch
+# import torch
 import io
 import warnings
 from utils import *
@@ -57,27 +57,27 @@ async def hatespeechs(text:Entities_1):
             "Prediction":str(pred)}
 
 #ImageCaption
-class Entities_2(BaseModel):
-    path: str
-class EntitesOut_2(BaseModel):
-    caption: str
+# class Entities_2(BaseModel):
+#     path: str
+# class EntitesOut_2(BaseModel):
+#     caption: str
 
-model = imageCaption.model
-transform = imageCaption.transform
+# model = imageCaption.model
+# transform = imageCaption.transform
 
 #ImageCaption
-@app.post('/captions', response_model=EntitesOut_2)
-def captions(inputs: Entities_2):
-    raw_image = inputs.path
-    if raw_image == None:
-        raise HTTPException(status_code=404, detail='Enter the path of the image')
-    img = cv2.imread(raw_image)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    im_pil = Image.fromarray(img)
-    image = transform(im_pil).unsqueeze(0)     #.to(device)   
-    with torch.no_grad():
-        caption = model.generate(image, sample=False, num_beams=3, max_length=62, min_length=5)
-        return {'caption':caption[0]}
+# @app.post('/captions', response_model=EntitesOut_2)
+# def captions(inputs: Entities_2):
+#     raw_image = inputs.path
+#     if raw_image == None:
+#         raise HTTPException(status_code=404, detail='Enter the path of the image')
+#     img = cv2.imread(raw_image)
+#     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#     im_pil = Image.fromarray(img)
+#     image = transform(im_pil).unsqueeze(0)     #.to(device)   
+#     with torch.no_grad():
+#         caption = model.generate(image, sample=False, num_beams=3, max_length=62, min_length=5)
+#         return {'caption':caption[0]}
 
 #Islamohpobia
 class Entities_3(BaseModel):
